@@ -61,6 +61,7 @@ remote_app = agent_engines.create(
         "google-auth",
         "tqdm",
         "requests",
+        "llama-index~=0.12.0",
     ],
     extra_packages=[
         "./rag",

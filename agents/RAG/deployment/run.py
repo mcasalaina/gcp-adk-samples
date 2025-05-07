@@ -52,10 +52,9 @@ session = agent_engine.create_session(user_id="123")
 
 queries = [
     "Hi, how are you?",
-    "According to the MD&A, how might the increasing proportion of revenues derived from non-advertising sources like Google Cloud and devices potentially impact Alphabet's overall operating margin, and why?",
-    "The report mentions significant investments in AI. What specific connection is drawn between these AI investments and the company's expectations regarding future capital expenditures?",
-    "What are the key risks and uncertainties associated with Alphabet's business operations?",
-    "Thanks, I got all the information I need. Goodbye!",
+    "I need a venue for a hackathon for 40 people in San Francisco",
+    "I need a venue for a wedding for 200 people in Seattle",
+    "Find me a place for a 20 person retirement party.",
 ]
 
 for query in queries:

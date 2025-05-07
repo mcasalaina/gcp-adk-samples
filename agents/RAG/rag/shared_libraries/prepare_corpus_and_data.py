@@ -35,8 +35,8 @@ if not LOCATION:
     raise ValueError(
         "GOOGLE_CLOUD_LOCATION environment variable not set. Please set it in your .env file."
     )
-CORPUS_DISPLAY_NAME = "Alphabet_10K_2024_corpus"
-CORPUS_DESCRIPTION = "Corpus containing Alphabet's 10-K 2024 document"
+CORPUS_DISPLAY_NAME = "venues"
+CORPUS_DESCRIPTION = "Corpus containing venue information"
 PDF_URL = "https://abc.xyz/assets/77/51/9841ad5c4fbe85b4440c47a4df8d/goog-10-k-2024.pdf"
 PDF_FILENAME = "goog-10-k-2024.pdf"
 ENV_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".env"))
@@ -125,20 +125,17 @@ def main():
   # Update the .env file with the corpus name
   update_env_file(corpus.name, ENV_FILE_PATH)
   
-  # Create a temporary directory to store the downloaded PDF
-  with tempfile.TemporaryDirectory() as temp_dir:
-    pdf_path = os.path.join(temp_dir, PDF_FILENAME)
+  # Define the path to the local PDF file
+  # Assumes venues.pdf is in the c:\\src\\gcp-adk-samples\\agents\\RAG\\ directory
+  local_pdf_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "venues.pdf"))
     
-    # Download the PDF from the URL
-    download_pdf_from_url(PDF_URL, pdf_path)
-    
-    # Upload the PDF to the corpus
-    upload_pdf_to_corpus(
-        corpus_name=corpus.name,
-        pdf_path=pdf_path,
-        display_name=PDF_FILENAME,
-        description="Alphabet's 10-K 2024 document"
-    )
+  # Upload the PDF to the corpus
+  upload_pdf_to_corpus(
+      corpus_name=corpus.name,
+      pdf_path=local_pdf_path,
+      display_name="venues.pdf",
+      description="A list of event venues in the US",
+  )
   
   # List all files in the corpus
   list_corpus_files(corpus_name=corpus.name)
